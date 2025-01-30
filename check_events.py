@@ -50,7 +50,7 @@ def fetch_events():
             events.append({
                 "title": event.find("div", class_="event-name").text.strip(),
                 "date": event.find("div", class_="event-date").text.strip(),
-                "url": event["href"]
+                "url": "https://iticket.com.tr" + event["href"]
             })
 
         return events
