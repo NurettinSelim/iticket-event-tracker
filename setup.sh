@@ -17,10 +17,6 @@ fi
 sudo apt-get update
 sudo apt-get install -y python3-full python3-venv tmux
 
-# Fix Google Cloud CLI if it's causing issues
-sudo apt-get remove -y google-cloud-cli google-cloud-cli-anthoscli || true
-sudo apt-get autoremove -y
-
 # Create and activate virtual environment
 python3 -m venv venv
 source venv/bin/activate
@@ -30,6 +26,9 @@ pip install -r requirements.txt
 
 # Kill existing tmux session if it exists
 tmux kill-session -t event_checker 2>/dev/null || true
+
+#Wait for 10 seconds to make sure the session is killed
+sleep 10
 
 # Create a new tmux session and run the script
 tmux new-session -d -s event_checker
